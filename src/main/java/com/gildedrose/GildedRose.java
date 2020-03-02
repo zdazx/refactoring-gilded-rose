@@ -9,14 +9,16 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals(Constant.AGED_BRIE)
-                    && !items[i].name.equals(Constant.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+            boolean isAgedBrie = items[i].name.equals(Constant.AGED_BRIE);
+            boolean isBackStage = items[i].name.equals(Constant.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT);
+            boolean isSulfuras = items[i].name.equals(Constant.SULFURAS_HAND_OF_RAGNAROS);
+            if (!isAgedBrie && !isBackStage) {
                 reduceQualityWhenGreaterThan0(items[i]);
             } else {
                 if (items[i].quality < 50) {
                     items[i].quality = items[i].quality + 1;
 
-                    if (items[i].name.equals(Constant.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                    if (isBackStage) {
                         if (items[i].sell_in < 11) {
                             addQualityWhenLessThan50(items[i]);
                         }
@@ -28,18 +30,18 @@ class GildedRose {
                 }
             }
 
-            if (!items[i].name.equals(Constant.SULFURAS_HAND_OF_RAGNAROS)) {
+            if (!isSulfuras) {
                 items[i].sell_in = items[i].sell_in - 1;
             }
 
             if (items[i].sell_in < 0) {
-                if (!items[i].name.equals(Constant.AGED_BRIE)
-                        && !items[i].name.equals(Constant.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                if (!isAgedBrie
+                        && !isBackStage) {
                     reduceQualityWhenGreaterThan0(items[i]);
                 } else {
                     items[i].quality = 0;
                 }
-                if (items[i].name.equals(Constant.AGED_BRIE)) {
+                if (isAgedBrie) {
                     addQualityWhenLessThan50(items[i]);
                 }
             }
