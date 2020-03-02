@@ -28,8 +28,7 @@ class GildedRose {
 
     private void updateQualityWhenSellInLessThan0(Item item, boolean isAgedBrie, boolean isBackStage) {
         if (item.sell_in < 0) {
-            if (!isAgedBrie
-                    && !isBackStage) {
+            if (!isAgedBrie && !isBackStage) {
                 reduceQualityWhenGreaterThan0(item);
             } else {
                 item.quality = 0;
