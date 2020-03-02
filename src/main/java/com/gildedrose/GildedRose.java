@@ -15,34 +15,42 @@ class GildedRose {
             if (!isAgedBrie && !isBackStage) {
                 reduceQualityWhenGreaterThan0(items[i]);
             } else {
-                if (items[i].quality < 50) {
-                    ++items[i].quality;
-
-                    if (isBackStage) {
-                        if (items[i].sell_in < 11) {
-                            addQualityWhenLessThan50(items[i]);
-                        }
-
-                        if (items[i].sell_in < 6) {
-                            addQualityWhenLessThan50(items[i]);
-                        }
-                    }
-                }
+                updateQualityWhenLessThan50(items[i], isBackStage);
             }
 
             if (!isSulfuras) {
                 --items[i].sell_in;
             }
 
-            if (items[i].sell_in < 0) {
-                if (!isAgedBrie
-                        && !isBackStage) {
-                    reduceQualityWhenGreaterThan0(items[i]);
-                } else {
-                    items[i].quality = 0;
+            updateQualityWhenSellInLessThan0(items[i], isAgedBrie, isBackStage);
+        }
+    }
+
+    private void updateQualityWhenSellInLessThan0(Item item, boolean isAgedBrie, boolean isBackStage) {
+        if (item.sell_in < 0) {
+            if (!isAgedBrie
+                    && !isBackStage) {
+                reduceQualityWhenGreaterThan0(item);
+            } else {
+                item.quality = 0;
+            }
+            if (isAgedBrie) {
+                addQualityWhenLessThan50(item);
+            }
+        }
+    }
+
+    private void updateQualityWhenLessThan50(Item item, boolean isBackStage) {
+        if (item.quality < 50) {
+            ++item.quality;
+
+            if (isBackStage) {
+                if (item.sell_in < 11) {
+                    addQualityWhenLessThan50(item);
                 }
-                if (isAgedBrie) {
-                    addQualityWhenLessThan50(items[i]);
+
+                if (item.sell_in < 6) {
+                    addQualityWhenLessThan50(item);
                 }
             }
         }
