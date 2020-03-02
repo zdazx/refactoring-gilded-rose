@@ -11,11 +11,7 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals(Constant.AGED_BRIE)
                     && !items[i].name.equals(Constant.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals(Constant.SULFURAS_HAND_OF_RAGNAROS)) {
-                        items[i].quality = items[i].quality - 1;
-                    }
-                }
+                reduceQualityWhenGreaterThan0(items[i]);
             } else {
                 if (items[i].quality < 50) {
                     items[i].quality = items[i].quality + 1;
@@ -37,19 +33,23 @@ class GildedRose {
             }
 
             if (items[i].sell_in < 0) {
-                if (!items[i].name.equals(Constant.AGED_BRIE)) {
-                    if (!items[i].name.equals(Constant.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals(Constant.SULFURAS_HAND_OF_RAGNAROS)) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        items[i].quality = 0;
-                    }
+                if (!items[i].name.equals(Constant.AGED_BRIE)
+                        && !items[i].name.equals(Constant.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                    reduceQualityWhenGreaterThan0(items[i]);
                 } else {
+                    items[i].quality = 0;
+                }
+                if (items[i].name.equals(Constant.AGED_BRIE)) {
                     addQualityWhenLessThan50(items[i]);
                 }
+            }
+        }
+    }
+
+    private void reduceQualityWhenGreaterThan0(Item item) {
+        if (item.quality > 0) {
+            if (!item.name.equals(Constant.SULFURAS_HAND_OF_RAGNAROS)) {
+                --item.quality;
             }
         }
     }
