@@ -16,7 +16,7 @@ class GildedRose {
                 reduceQualityWhenGreaterThan0(items[i]);
             } else {
                 if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+                    ++items[i].quality;
 
                     if (isBackStage) {
                         if (items[i].sell_in < 11) {
@@ -31,7 +31,7 @@ class GildedRose {
             }
 
             if (!isSulfuras) {
-                items[i].sell_in = items[i].sell_in - 1;
+                --items[i].sell_in;
             }
 
             if (items[i].sell_in < 0) {
