@@ -41,15 +41,15 @@ class GildedRose {
     }
 
     private void updateQualityWhenLessThan50(Item item, boolean isBackStage) {
-        if (item.quality < 50) {
+        if (item.quality < Constant.NUM_50) {
             ++item.quality;
 
             if (isBackStage) {
-                if (item.sell_in < 11) {
+                if (item.sell_in < Constant.NUM_11) {
                     addQualityWhenLessThan50(item);
                 }
 
-                if (item.sell_in < 6) {
+                if (item.sell_in < Constant.NUM_6) {
                     addQualityWhenLessThan50(item);
                 }
             }
@@ -65,7 +65,7 @@ class GildedRose {
     }
 
     private void addQualityWhenLessThan50(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < Constant.NUM_50) {
             ++item.quality;
         }
     }
