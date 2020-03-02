@@ -56,7 +56,7 @@ class GildedRose {
 
     private void addQualityWhenLessThan50(Item item) {
         if (item.quality < 50) {
-            item.quality = item.quality + 1;
+            ++item.quality;
         }
     }
 }
