@@ -1,4 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.items;
+
+import com.gildedrose.Item;
 
 public class RegularItem extends Item {
     public RegularItem(String name, int sellIn, int quality) {
