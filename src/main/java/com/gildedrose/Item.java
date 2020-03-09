@@ -21,7 +21,9 @@ public abstract class Item {
 
         updateSellIn();
 
-        updateQualityAfterExpired();
+        if (isExpired()) {
+            updateQualityAfterExpired();
+        }
     }
 
     protected abstract void updateQuality();
@@ -35,5 +37,13 @@ public abstract class Item {
         if (quality < 50) {
             quality = quality + 1;
         }
+    }
+
+    protected void decreaseSellIn() {
+        sellIn--;
+    }
+
+    protected boolean isExpired() {
+        return sellIn < 0;
     }
 }

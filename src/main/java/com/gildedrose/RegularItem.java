@@ -7,22 +7,22 @@ public class RegularItem extends Item {
 
     @Override
     protected void updateQuality() {
-        if (quality > 0) {
-            quality = quality - 1;
-        }
+        decreaseQuality();
     }
 
     @Override
     protected void updateSellIn() {
-        sellIn = sellIn - 1;
+        decreaseSellIn();
     }
 
     @Override
     protected void updateQualityAfterExpired() {
-        if (sellIn < 0) {
-            if (quality > 0) {
-                quality = quality - 1;
-            }
+        decreaseQuality();
+    }
+
+    private void decreaseQuality() {
+        if (quality > 0) {
+            quality = quality - 1;
         }
     }
 }
