@@ -1,9 +1,9 @@
 package com.gildedrose;
 
 public class Item {
-    private String name;
-    private int sellIn;
-    private int quality;
+    protected String name;
+    protected int sellIn;
+    protected int quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
@@ -24,73 +24,28 @@ public class Item {
         updateQualityAfterExpired();
     }
 
-    private void updateQuality() {
-        if (isAgedBrie() || isBackStagePass()) {
-            if (quality < 50) {
-                quality = quality + 1;
+    protected void updateQuality() {
+        if (quality > 0) {
+            quality = quality - 1;
+        }
+    }
 
-                if (isBackStagePass()) {
-                    if (sellIn < 11) {
-                        increaseQuality();
-                    }
 
-                    if (sellIn < 6) {
-                        increaseQuality();
-                    }
-                }
-            }
-        } else {
+    protected void updateSellIn() {
+        sellIn = sellIn - 1;
+    }
+
+    protected void updateQualityAfterExpired() {
+        if (sellIn < 0) {
             if (quality > 0) {
-                if (isSulfuras()) {
-                    return;
-                }
                 quality = quality - 1;
             }
         }
     }
 
-
-    private void updateSellIn() {
-        if (isSulfuras()) {
-            return;
-        }
-        sellIn = sellIn - 1;
-    }
-
-    private void updateQualityAfterExpired() {
-        if (sellIn < 0) {
-            if (isAgedBrie()) {
-                increaseQuality();
-            } else {
-                if (isBackStagePass()) {
-                    quality = 0;
-                } else {
-                    if (quality > 0) {
-                        if (isSulfuras()) {
-                            return;
-                        }
-                        quality = quality - 1;
-                    }
-                }
-            }
-        }
-    }
-
-    private void increaseQuality() {
+    protected void increaseQuality() {
         if (quality < 50) {
             quality = quality + 1;
         }
-    }
-
-    private boolean isSulfuras() {
-        return name.equals("Sulfuras, Hand of Ragnaros");
-    }
-
-    private boolean isBackStagePass() {
-        return name.equals("Backstage passes to a TAFKAL80ETC concert");
-    }
-
-    private boolean isAgedBrie() {
-        return name.equals("Aged Brie");
     }
 }

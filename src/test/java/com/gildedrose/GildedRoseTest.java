@@ -21,6 +21,15 @@ public class GildedRoseTest {
     }
 
     private static Item createItem(String name, int sellIn, int quality) {
+        if (name.startsWith("Aged Brie")) {
+            return new AgedBrie(sellIn, quality);
+        }
+        if (name.startsWith("Sulfuras")) {
+            return new Sulfuras(sellIn, quality);
+        }
+        if (name.startsWith("Backstage passes")) {
+            return new BackstagePass(sellIn, quality);
+        }
         return new Item(name, sellIn, quality);
     }
 
