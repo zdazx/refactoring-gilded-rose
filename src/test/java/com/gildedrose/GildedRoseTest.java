@@ -30,7 +30,7 @@ public class GildedRoseTest {
         if (name.startsWith("Backstage passes")) {
             return new BackstagePass(sellIn, quality);
         }
-        return new Item(name, sellIn, quality);
+        return new RegularItem(name, sellIn, quality);
     }
 
     private static Stream<TestFixture> provideAgedBries() {

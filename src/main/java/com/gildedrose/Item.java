@@ -24,24 +24,12 @@ public class Item {
         updateQualityAfterExpired();
     }
 
-    protected void updateQuality() {
-        if (quality > 0) {
-            quality = quality - 1;
-        }
-    }
+    protected void updateQuality() { }
 
 
-    protected void updateSellIn() {
-        sellIn = sellIn - 1;
-    }
+    protected void updateSellIn() { }
 
-    protected void updateQualityAfterExpired() {
-        if (sellIn < 0) {
-            if (quality > 0) {
-                quality = quality - 1;
-            }
-        }
-    }
+    protected void updateQualityAfterExpired() { }
 
     protected void increaseQuality() {
         if (quality < 50) {
