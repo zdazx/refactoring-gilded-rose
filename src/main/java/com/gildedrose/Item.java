@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Item {
+public abstract class Item {
     protected String name;
     protected int sellIn;
     protected int quality;
@@ -24,12 +24,12 @@ public class Item {
         updateQualityAfterExpired();
     }
 
-    protected void updateQuality() { }
+    protected abstract void updateQuality();
 
 
-    protected void updateSellIn() { }
+    protected abstract void updateSellIn();
 
-    protected void updateQualityAfterExpired() { }
+    protected abstract void updateQualityAfterExpired();
 
     protected void increaseQuality() {
         if (quality < 50) {
