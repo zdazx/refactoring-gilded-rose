@@ -14,7 +14,7 @@ public class GildedRoseTest {
     public void foo(TestFixture testFixture) {
         Item item = createItem(testFixture.name, testFixture.sellIn, testFixture.quality);
 
-        new GildedRose(new Item[]{item}).update_quality();
+        new GildedRose(new Item[]{item}).updateQuality();
 
         Item expectedItem = createItem(testFixture.name, testFixture.updatedSellIn, testFixture.updatedQuality);
         assertThat(item.toString()).isEqualTo(expectedItem.toString());
